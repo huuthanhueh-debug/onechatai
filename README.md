@@ -105,6 +105,10 @@ vendor/promptgate/   bản engine PromptGate dự phòng khi không có plugin c
 - **Kiểm tra từ bên ngoài:** `curl http://127.0.0.1:4780/api/ping` trả về phiên bản, thời gian chạy và danh sách tính năng (không cần token, không lộ dữ liệu). Chỉ nghe trên máy này, không mở ra mạng.
 - **Biểu tượng Taskbar:** `OneChat.cmd` và `OneChat.vbs` giờ mở app riêng (logo OneChat). Muốn mở kiểu trình duyệt như cũ: `OneChat.cmd --browser`.
 
+## Giấy phép
+
+MIT, xem [LICENSE](LICENSE). Thư mục `vendor/promptgate/` là bản sao PromptGate, cũng theo giấy phép MIT riêng của nó.
+
 ---
 
 ## English
@@ -116,3 +120,5 @@ vendor/promptgate/   bản engine PromptGate dự phòng khi không có plugin c
 **What it does:** PromptGate scoring with click-to-pick A/B/C rewrites (never blocks) · auto-links every Claude memory folder read-only, attaches only entries relevant to the prompt, masks secret-like values · attaches local files and folders (text, code, docx, xlsx, pptx, pdf) · learns which AI you use for which kind of task and suggests or auto-routes · Vietnamese/English voice input · token estimates, history budget, compaction · pictures in chat (a vision-capable AI describes them for one that cannot see) · "% left" per AI as reported by the provider · automatic switch to another AI when one is out of credit, overloaded or not running · Agent mode (draft → review → revise, with lessons) · Council mode (several AIs answer, one writes the final answer) · mind maps, charts, SVG drawings and slideshow videos rendered in the window · Operator mode (the AI works step by step in its own Chrome window, saves files, opens programs and runs commands, always asking before anything that cannot be undone) · a per-conversation output folder with kept versions and one-click restore · asks back with options to click when a request is unclear.
 
 **Security:** binds to 127.0.0.1; every API call needs a per-run token plus matching Host/Origin; strict CSP; model output is escaped before rendering. Keys and chats stay in `%APPDATA%\OneChat` on your machine and are never part of this repository.
+
+**License:** MIT, see [LICENSE](LICENSE).
