@@ -1,0 +1,57 @@
+{
+  "name": "onechat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OneChat - one desktop window for Claude, DeepSeek, Gemini, Groq, OpenAI and AnythingLLM. Vietnamese/English, voice input, pictures, PromptGate, Claude memory, Agent and Council modes, Operator mode that works in Chrome and saves files.",
+  "keywords": [
+    "ai",
+    "chat",
+    "desktop",
+    "electron",
+    "claude",
+    "deepseek",
+    "gemini",
+    "groq",
+    "openai",
+    "anythingllm",
+    "vietnamese",
+    "promptgate",
+    "agent",
+    "operator"
+  ],
+  "homepage": "https://github.com/huuthanhueh-debug/onechatai#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huuthanhueh-debug/onechatai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/huuthanhueh-debug/onechatai/issues"
+  },
+  "author": "huuthanhueh-debug",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "node --use-system-ca server.js --no-auto-exit",
+    "test": "node --use-system-ca --test --test-force-exit --test-timeout=60000 \"tests/*.test.js\"",
+    "test:live": "node --use-system-ca --test --test-force-exit --test-name-pattern=LIVE \"tests/*.test.js\"",
+    "export-memory": "node scripts/export-memory.js",
+    "icon": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/make-icon.ps1",
+    "shortcut": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-shortcut.ps1",
+    "app": "electron .",
+    "check-keys": "node --use-system-ca scripts/check-keys.js",
+    "start:browser": "node --use-system-ca server.js --open"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0"
+  },
+  "optionalDependencies": {
+    "pdf-parse": "^2.4.5"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^45.3.1"
+  }
+}

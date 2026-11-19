@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="__LANG__">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="onechat-token" content="__TOKEN__">
+<meta name="onechat-version" content="__VERSION__">
+<title>OneChat</title>
+<link rel="icon" href="/icon.png">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <div class="brand">
+      <img src="/icon.png" alt="" width="26" height="26">
+      <span class="brand-name">OneChat</span>
+      <button id="btnNew" class="btn primary small" data-i18n="new_chat" data-i18n-title="new_chat_tip"></button>
+    </div>
+    <input id="convSearch" type="search" autocomplete="off" data-i18n-ph="search_chats">
+    <nav id="convList" aria-label="Conversations"></nav>
+    <div class="side-foot">
+      <div id="todayUsage" class="muted small"></div>
+      <div class="row">
+        <button id="btnSettings" class="btn ghost small" data-i18n="settings"></button>
+        <button id="btnLang" class="btn ghost small" data-i18n-title="switch_lang"></button>
+        <button id="btnTheme" class="btn ghost small" data-i18n-title="switch_theme">◐</button>
+      </div>
+    </div>
+  </aside>
+
+  <main id="main">
+    <header id="top">
+      <button id="btnSide" class="icon" data-i18n-title="toggle_sidebar">☰</button>
+      <div id="pills" role="tablist"></div>
+      <div class="top-right">
+        <select id="modelSel" data-i18n-title="model"></select>
+        <button id="btnRefreshModels" class="icon" data-i18n-title="refresh_models">↻</button>
+        <span id="meter" class="muted small"></span>
+        <button id="btnPanel" class="icon" data-i18n-title="toggle_panel">▤</button>
+      </div>
+    </header>
+
+    <div id="offline" role="alert" hidden><span data-i18n="offline_banner"></span></div>
+    <section id="messages" aria-live="polite"></section>
+
+    <footer id="composerWrap">
+      <div id="hints"></div>
+      <div id="pgCard" hidden></div>
+      <div id="chips"></div>
+      <div id="composer">
+        <textarea id="input" rows="1" spellcheck="false" data-i18n-ph="placeholder"></textarea>
+        <div id="interim" class="muted small" hidden></div>
+        <div class="tools">
+          <button id="btnAttach" class="tool" data-i18n-title="attach_tip">📎 <span data-i18n="attach"></span></button>
+          <button id="btnMemory" class="tool" data-i18n-title="memory_tip">🧠 <span data-i18n="memory"></span></button>
+          <span class="mic-group">
+            <button id="btnMic" class="tool" data-i18n-title="mic_tip">🎤 <span data-i18n="voice"></span></button>
+            <button id="btnVoiceLang" class="tool lang" data-i18n-title="voice_lang_tip"></button>
+          </span>
+          <button id="btnAgent" class="tool" data-i18n-title="agent_tip">🤖 Agent</button>
+          <button id="btnCouncil" class="tool" data-i18n-title="council_tip">👥 <span data-i18n="council"></span></button>
+          <button id="btnStudio" class="tool" data-i18n-title="studio_tip">🎨 <span data-i18n="studio"></span></button>
+          <button id="btnOperator" class="tool" data-i18n-title="operator_tip">🖱 <span data-i18n="operator"></span></button>
+          <button id="btnFolder" class="tool" data-i18n-title="out_folder_tip">📂</button>
+          <button id="btnOptimize" class="tool" data-i18n-title="optimize_tip">✨ PromptGate <span id="pgScore" class="score"></span></button>
+          <span class="spacer"></span>
+          <span id="draftTokens" class="muted small"></span>
+          <button id="btnSend" class="btn primary" data-i18n="send"></button>
+        </div>
+      </div>
+      <div class="foot-note muted small" data-i18n="foot_note"></div>
+    </footer>
+  </main>
+
+  <aside id="panel" hidden>
+    <div class="tabs">
+      <button class="tab" data-tab="files" data-i18n="tab_files"></button>
+      <button class="tab" data-tab="memory" data-i18n="tab_memory"></button>
+      <button class="tab" data-tab="habits" data-i18n="tab_habits"></button>
+      <button id="btnPanelClose" class="icon">✕</button>
+    </div>
+    <div id="tab-files" class="tab-body">
+      <div id="fsRoots" class="roots"></div>
+      <div class="row">
+        <input id="fsPath" type="text" spellcheck="false" autocomplete="off" data-i18n-ph="fs_path_ph">
+        <button id="fsUp" class="icon" data-i18n-title="fs_up">↑</button>
+      </div>
+      <div class="row">
+        <input id="fsSearch" type="search" autocomplete="off" data-i18n-ph="fs_search_ph">
+        <button id="fsLink" class="btn ghost small" data-i18n="fs_link" data-i18n-title="fs_link_tip"></button>
+      </div>
+      <div id="fsList" class="list"></div>
+      <div class="row sticky-foot">
+        <span id="fsSelInfo" class="muted small"></span>
+        <span class="spacer"></span>
+        <button id="fsAttachFolder" class="btn ghost small" data-i18n="fs_attach_folder" data-i18n-title="fs_attach_folder_tip"></button>
+        <button id="fsAttach" class="btn primary small" data-i18n="fs_attach"></button>
+      </div>
+    </div>
+    <div id="tab-memory" class="tab-body" hidden>
+      <div class="row">
+        <input id="memSearch" type="search" autocomplete="off" data-i18n-ph="mem_search_ph">
+        <button id="memNew" class="btn ghost small" data-i18n="mem_new"></button>
+      </div>
+      <div class="row">
+        <button id="memImport" class="btn ghost small" data-i18n="mem_import" data-i18n-title="mem_import_tip"></button>
+        <button id="memExport" class="btn ghost small" data-i18n="mem_export" data-i18n-title="mem_export_tip"></button>
+        <input id="memFile" type="file" accept=".md,.markdown,.txt,.json" multiple hidden>
+      </div>
+      <div id="memNote" hidden>
+        <input id="memNoteTitle" type="text" data-i18n-ph="mem_note_title">
+        <textarea id="memNoteText" rows="4" data-i18n-ph="mem_note_text"></textarea>
+        <div class="row"><span class="spacer"></span><button id="memNoteCancel" class="btn ghost small" data-i18n="cancel"></button><button id="memNoteSave" class="btn primary small" data-i18n="save"></button></div>
+      </div>
+      <div id="memList" class="list"></div>
+      <div class="muted small pad" data-i18n="mem_foot"></div>
+    </div>
+    <div id="tab-habits" class="tab-body" hidden>
+      <label class="check"><input id="autoRoute" type="checkbox"> <span data-i18n="auto_route"></span></label>
+      <div class="muted small pad" data-i18n="habits_intro"></div>
+      <div id="habitList"></div>
+      <h4 data-i18n="quota_title"></h4>
+      <div class="muted small pad" data-i18n="quota_intro"></div>
+      <div id="quotaList"></div>
+      <h4 data-i18n="usage_title"></h4>
+      <div id="usageList"></div>
+      <h4 data-i18n="lessons_title"></h4>
+      <div class="muted small pad" data-i18n="lessons_intro"></div>
+      <div id="lessonList"></div>
+    </div>
+  </aside>
+</div>
+
+<div id="modal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h3 data-i18n="settings"></h3>
+      <div class="tabs" id="setTabs">
+        <button class="tab" data-set="ai" data-i18n="set_ai"></button>
+        <button class="tab" data-set="general" data-i18n="set_general"></button>
+        <button class="tab" data-set="pg">PromptGate</button>
+        <button class="tab" data-set="memory" data-i18n="tab_memory"></button>
+        <button class="tab" data-set="voice" data-i18n="voice"></button>
+      </div>
+      <button id="modalClose" class="icon">✕</button>
+    </div>
+    <div id="setBody" class="modal-body"></div>
+  </div>
+</div>
+<div id="drop" hidden><div data-i18n="drop_here"></div></div>
+<div id="toast" hidden></div>
+
+<script src="/i18n.js"></script>
+<script src="/md.js"></script>
+<script src="/studio.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
